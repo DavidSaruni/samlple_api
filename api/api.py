@@ -1,18 +1,16 @@
 import flask
-
 from flask import request, jsonify
 
 app = flask.Flask(__name__)
-app.config["DEBUG"]=True
+app.config["DEBUG"] = True
 
-# create some test data for our catalog
 books = [
     {'id': 0,
      'title': 'A Fire Upon the Deep',
      'author': 'Vernor Vinge',
      'first_sentence': 'The coldsleep itself was dreamless.',
      'year_published': '1992'},
-    {'id': 1,
+     {'id': 1,
      'title': 'The Ones Who Walk Away From Omelas',
      'author': 'Ursula K. Le Guin',
      'first_sentence': 'With a clamor of bells that set the swallows soaring, the Festival of Summer came to the city Omelas, bright-towered by the sea.',
@@ -26,15 +24,14 @@ books = [
 
 @app.route('/', methods=["GET"])
 def home():
-    return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
+    return "<h1>This our Web APIs Demo</h1><p>Welcome to Learning Apis</p>"
 
-# a route to return all the available books in our catalog
-@app.route('/api/resources/books/all', methods=["GET"])
-def api_all():
+@app.route('/api/resources/books/all')
+def all_books():
     return jsonify(books)
 
 @app.route('/api/resources/books', methods=['GET'])
-def api_id():
+def book_id():
     # Check if an ID was provided as part of the URL. If ID is provided, assign it to a variable.
     # If no ID is provided, display an error in the browser.
     
